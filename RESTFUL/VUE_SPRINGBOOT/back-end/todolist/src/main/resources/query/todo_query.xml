@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="com.restback.todolist.model.dao.TodoDao" >
+
+ 	<insert id="insert"		parameterType="todo">
+		INSERT INTO TODO
+		(
+			`USER_NO`,
+			`TITLE`,
+			`CONTENT`,
+			`END_DATE`
+		)
+		VALUES(
+			#{USER_NO:INTEGER},
+			#{TITLE:VARCHAR},
+			#{CONTENT:VARCHAR},
+			#{END_DATE:DATE}
+		);
+	</insert> 
+   	<update id="update"		parameterType="todo">
+		UPDATE TODO
+		SET
+		`TITLE` 	= #{TITLE: VARCHAR},
+		`CONTENT` 	= #{CONTENT: VARCHAR},
+		`IS_DONE` 	= #{IS_DONE: BOOLEAN},
+		`PRIORITY` 	= #{PRIORITY: INTEGER},
+		`REG_DATE` 	= CURRENT_TIMESTAMP(),
+		`END_DATE` 	= #{END_DATE: DATE}
+		WHERE `NO` 	= #{NO:INTEGER} AND `USER_NO` = #{USER_NO:INTEGER};	
+	</update>
+ 	<delete id="delete" 	parameterType="int"> 
+		 DELETE FROM TODO 
+		 WHERE `NO` = #{NO:INTEGER} 
+		 AND `USER_NO` = #{USER_NO:INTEGER};
+	</delete> 
+   	<select id="search"		parameterType="int" resultType="todo"> 
+		SELECT * 
+		FROM TODO 
+		WHERE `NO` = #{NO:INTEGER} AND `USER_NO` = #{USER_NO:INTEGER};  
+	</select>
+	<select id="searchUserTodoList" parameterType = "int" resultType="todo">
+		SELECT * 
+		FROM TODO
+		WHERE `USER_NO` = #{USER_NO:INTEGER};
+	</select>
+   	<select id="searchAll"	resultType="todo">
+		SELECT * 
+		FROM TODO;
+	</select>
+</mapper>

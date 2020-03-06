@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.restback.todolist.model.dto.Todo" alias="TODO" />
+		<typeAlias type="com.restback.todolist.model.dto.User" alias="USER" />
+	</typeAliases>
+
+	<mappers>
+		<mapper resource="query/todo_query.xml" />
+		<mapper resource="query/user_query.xml" />
+	</mappers>
+</configuration>

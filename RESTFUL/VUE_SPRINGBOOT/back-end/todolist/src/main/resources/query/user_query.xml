@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="com.restback.todolist.model.dao.UserDao" >
+
+ 	<insert id="insert"		parameterType="user">
+		INSERT INTO USER
+        (`ID`, 
+        `PASSWORD`, 
+        `NAME`)
+        VALUES
+        (#{ID:VARCHAR}, 
+        #{PASSWORD:VARCHAR}, 
+        #{NAME:VARCHAR});
+	</insert> 
+
+   	<update id="update"		parameterType="user">
+		UPDATE USER
+        SET
+        `ID`          = #{ID:VARCHAR},
+        `PASSWORD`    = #{PASSWORD:VARCHAR},
+        `NAME`        = #{NAME:VARCHAR}
+        WHERE `NO` = #{NO:INTEGER};
+	</update>
+ 	<delete id="delete" 	parameterType="int"> 
+		DELETE FROM USER
+        WHERE `NO` = #{NO:INTEGER};
+	</delete> 
+   	<select id="search"		parameterType="int" resultType="user"> 
+		SELECT * 
+		FROM USER 
+		WHERE `NO` = #{NO:INTEGER}       
+	</select>
+   	<select id="searchAll"	resultType="user">
+		SELECT * 
+		FROM USER
+	</select>
+</mapper>
